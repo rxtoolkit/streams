@@ -34,7 +34,7 @@ const fromReadableStream = function fromReadableStream(stream, options = {}) {
     };
   });
   return obs$.pipe(
-    // publish(),
+    publish(),
     refCount()
   );
 };
