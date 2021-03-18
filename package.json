@@ -1,16 +1,16 @@
 {
-  "name": "@buccaneerai/PACKAGE_NAME",
-  "version": "1.0.0",
-  "description": "FIXME",
+  "name": "@buccaneerai/rxjs-streams",
+  "version": "0.1.0",
+  "description": "🐠 RxJS operators and utilities for worth with streams (node.js ReadableStream, pipes, etc.)",
   "main": "dist/index.js",
-  "repository": "https://github.com/buccaneerai/PACKAGE_NAME.git",
+  "repository": "https://github.com/buccaneerai/rxjs-streams.git",
   "author": "Buccaneer LLC <opensource@buccaneer.ai>",
   "license": "UNLICENSED",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
   "bugs": {
-    "url": "https://github.com/buccaneerai/PACKAGE_NAME/issues"
+    "url": "https://github.com/buccaneerai/rxjs-streams/issues"
   },
   "keywords": [],
   "directories": {
@@ -25,7 +25,8 @@
   },
   "dependencies": {
     "lodash": "^4.17.20",
-    "rxjs": "^6.6.3"
+    "rxjs": "^6.6.3",
+    "rxjs-stream": "^3.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.13",
