@@ -1,7 +1,8 @@
 import {expect} from 'chai';
 import sinon from 'sinon';
 // import {marbles} from 'rxjs-marbles/mocha';
-import {of} from 'rxjs';
+import {of,throwError} from 'rxjs';
+import {mergeMap} from 'rxjs/operators';
 import {parse as csvParse} from 'csv-parse';
 
 import toReadableStream from './toReadableStream';
@@ -54,12 +55,54 @@ describe('toReadableStream', () => {
       .on('end', () => {
         expect(onData.callCount).to.equal(4);
         expect(onData.getCall(0).args[0]).to.deep.equal({
-          name: 'Blackbeard', systolicBp: 140, diastolicBp: 91, motto: 'Yarr'
+          name: 'Blackbeard',
+          systolicBp: 140,
+          diastolicBp: 91,
+          motto: 'Yarr'
         });
         expect(onData.getCall(3).args[0]).to.deep.equal({
-          name: 'Charles Vayne', systolicBp: 200, diastolicBp: 100, motto: 'Stab first ask questions later'
+          name: 'Charles Vayne',
+          systolicBp: 200,
+          diastolicBp: 100,
+          motto: 'Stab first ask questions later'
         });
         done();
       });
+  });
+
+  it('should not throw when an upstream observable throws an error', done => {
+    const onData = sinon.spy();
+    const onError = sinon.spy();
+    const throwError = () => {throw error;};
+    const runPipeline = () => {
+      const input$ = of(...['foo', 'bar']);
+      const inputWithErr$ = input$.pipe(
+        mergeMap(() => throwError())
+      );
+      const rs = toReadableStream(inputWithErr$);
+      rs.on('error', err => {
+        expect(err).to.be.an('error');
+        done();
+      });
+    };
+    expect(runPipeline).to.not.throw();
+  });
+
+  it('should not throw when an upstream observable emits an error', done => {
+    const onData = sinon.spy();
+    const onError = sinon.spy();
+    const makeError = () => throwError(new Error('caught an error'));
+    const runPipeline = () => {
+      const input$ = of(...['foo', 'bar']);
+      const inputWithErr$ = input$.pipe(
+        mergeMap(() => makeError())
+      );
+      const rs = toReadableStream(inputWithErr$);
+      rs.on('error', err => {
+        expect(err).to.be.an('error');
+        done();
+      });
+    };
+    expect(runPipeline).to.not.throw();
   });
 });
