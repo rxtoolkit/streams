@@ -1,11 +1,11 @@
-# @buccaneerai/rxjs-streams
+# @rxtk/streams
 > 🐠 RxJS operators and utilities for worth with streams (node.js ReadableStream, pipes, etc.)
 
 ## Installation
 This is a private package. It requires setting up access in your npm config.
 
 ```bash
-yarn add @buccaneerai/rxjs-streams
+yarn add @rxtk/streams
 ```
 
 ## API
@@ -14,7 +14,7 @@ yarn add @buccaneerai/rxjs-streams
 Creates an RxJS observable from a node.js ReadableStream.
 ```js
 import {createReadStream} from 'fs';
-import {fromReadableStream} from '@buccaneerai/rxjs-streams';
+import {fromReadableStream} from '@rxtk/streams';
 
 const readStream = createReadStream('/path/to/my/file.json');
 const buffer$ = fromReadableStream(readStream);
@@ -27,7 +27,7 @@ buffer$.subscribe(console.log);
 ### `streamFromObservable`
 Creates a node.js ReadableStream from an RxJS observable:
 ```js
-import {streamFromObservable} from '@buccaneerai/rxjs-streams';
+import {streamFromObservable} from '@rxtk/streams';
 
 const string$ = from(["hello", "wo", "rld", "!"]);
 const readStream = streamFromObservable(string$)
@@ -45,7 +45,7 @@ This RxJS operator allows you to use node.js pipes within an RxJS observable.
 ```js
 import {from} from 'rxjs';
 import csvParser from 'csv-parse';
-import {toNodePipes} from '@buccaneerai/rxjs-streams';
+import {toNodePipes} from '@rxtk/streams';
 
 const csvString$ = from([
  '"name","systolicBp","dialostilicBp","message"\n', 

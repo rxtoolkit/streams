@@ -1,16 +1,13 @@
 {
-  "name": "@buccaneerai/rxjs-streams",
+  "name": "@rxtk/streams",
   "version": "0.3.0",
   "description": "🐠 RxJS operators and utilities for worth with streams (node.js ReadableStream, pipes, etc.)",
   "main": "dist/index.js",
-  "repository": "https://github.com/buccaneerai/rxjs-streams.git",
+  "repository": "https://github.com/rxtoolkit/streams.git",
   "author": "Buccaneer LLC <opensource@buccaneer.ai>",
-  "license": "UNLICENSED",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/buccaneerai/rxjs-streams/issues"
+    "url": "https://github.com/rxtoolkit/streams/issues"
   },
   "keywords": [],
   "directories": {
