@@ -38,6 +38,7 @@ const readStream = streamFromObservable(string$)
 // wo
 // rld
 // !
+// DONE
 ```
 
 ### `toNodePipes`
